@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study | Nexus Agency</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <nav class="nav-inner">
+        <a href="index.html" class="logo">Nexus<span>.</span></a>
+        <ul class="nav-links">
+          <li><a href="work.html">Work</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#estimator">Estimate</a></li>
+          <li><a href="index.html#booking">Contact</a></li>
+        </ul>
+        <a href="portal.html" class="nav-cta">Client Portal ↗</a>
+        <button type="button" class="menu-toggle">☰</button>
+      </nav>
+      <div class="mobile-menu">
+        <a href="work.html">Work</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#estimator">Estimate</a>
+        <a href="index.html#booking">Contact</a>
+        <a href="portal.html">Client Portal ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <article class="container" id="case-content" style="padding-bottom:6rem;">
+      <a href="work.html" class="back-link" style="margin-top:8rem;">← Back to Work</a>
+      <header class="reveal">
+        <span id="case-category" class="section-badge glass" style="color:#a5b4fc;"></span>
+        <h1 id="case-title" style="font-family:var(--font-display);font-size:clamp(2rem,5vw,3rem);font-weight:700;margin-top:1rem;"></h1>
+        <p id="case-desc" style="color:#94a3b8;font-size:1.125rem;margin-top:1rem;max-width:42rem;"></p>
+      </header>
+      <section class="reveal" style="margin-top:3rem;">
+        <h2 style="font-family:var(--font-display);font-size:1.25rem;">Before & After</h2>
+        <p style="font-size:0.875rem;color:#94a3b8;margin:0.5rem 0 1.5rem;">Drag the slider to compare.</p>
+        <div id="before-after" class="before-after">
+          <img class="after-img" src="" alt="After" />
+          <div class="before-layer"><img class="before-img" src="" alt="Before" /></div>
+          <span class="ba-label before">Before</span>
+          <span class="ba-label after">After</span>
+          <div class="slider-handle"><div class="slider-knob">⋮</div></div>
+        </div>
+      </section>
+      <div class="stat-cards reveal">
+        <div class="stat-card"><p>Timeline</p><p class="text-gradient" style="font-weight:700;margin-top:0.25rem;">12 weeks</p></div>
+        <div class="stat-card"><p>Team Size</p><p class="text-gradient" style="font-weight:700;margin-top:0.25rem;">5 specialists</p></div>
+        <div class="stat-card"><p>Result</p><p class="text-gradient" style="font-weight:700;margin-top:0.25rem;">+47% conversion</p></div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="margin-top:0;border:0;padding-top:0;">
+        <p>&copy; <span id="year"></span> Nexus Agency</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data/case-data.js"></script>
+  <script src="js/modules/pricing.js"></script>
+  <script src="js/modules/navbar.js"></script>
+  <script src="js/modules/filter.js"></script>
+  <script src="js/modules/estimator.js"></script>
+  <script src="js/modules/slider.js"></script>
+  <script src="js/modules/case-study.js"></script>
+  <script src="js/modules/footer.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
