@@ -1,13 +1,21 @@
-//Busniess Logic
+/* Multi-step scope estimator + complexity calculator */
 
-/* Multi-step scope estimator + pricing calculator */
-// Pricing helper for scope estimator
-function calcPrice(type, rush) {
-  var min = 8000, max = 25000, weeks = "4–10";
-  if (type === "App") { min = 25000; max = 80000; weeks = "8–20"; }
-  if (type === "Custom Integration") { min = 15000; max = 50000; weeks = "6–14"; }
-  if (rush) { min = Math.round(min * 1.35); max = Math.round(max * 1.35); }
-  return "$" + min.toLocaleString() + " – $" + max.toLocaleString() + " · " + weeks + " weeks";
+// Scope helper for estimator
+function calcScope(type, rush, numAddons) {
+  var minHours = 20, maxHours = 40, developers = 1;
+  if (type === "App") { minHours = 40; maxHours = 80; developers = 2; }
+  if (type === "Custom Integration") { minHours = 35; maxHours = 70; developers = 2; }
+  
+  minHours += numAddons * 10;
+  maxHours += numAddons * 15;
+  if (numAddons > 2) developers = Math.min(developers + 1, 4);
+
+  var weeks = Math.ceil(maxHours / (developers * 20));
+  if (rush) {
+    weeks = Math.max(1, Math.ceil(weeks * 0.6));
+  }
+  
+  return minHours + " – " + maxHours + " Hours · ~" + developers + " Devs · " + weeks + " " + (weeks === 1 ? "Week" : "Weeks");
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -24,9 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function updatePrice() {
     var typeEl = est.querySelector('input[name="type"]:checked');
     var rushEl = est.querySelector('input[name="rush"]:checked');
+    var addonsChecked = est.querySelectorAll('input[name="addon"]:checked').length;
     var type = typeEl ? typeEl.value : "Website";
     var rush = rushEl && rushEl.value === "Rush";
-    priceBox.textContent = calcPrice(type, rush);
+    priceBox.textContent = calcScope(type, rush, addonsChecked);
   }
 
   function showStep(n) {
@@ -75,8 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var checks = est.querySelectorAll('input[name="addon"]:checked');
     for (var c = 0; c < checks.length; c++) payload.addons.push(checks[c].value);
     var priceText = priceBox.textContent;
-    console.log("Estimate submitted:", JSON.stringify(payload, null, 2));
-    est.innerHTML = '<div class="success-panel"><div class="success-icon">✓</div><h3>Estimate Submitted!</h3><p>We will contact you within 24 hours.</p><p class="text-gradient" style="margin-top:1rem;font-weight:700;">' + priceText + '</p></div>';
+    console.log("Scope planned:", JSON.stringify(payload, null, 2));
+    est.innerHTML = '<div class="success-panel"><div class="success-icon">✓</div><h3>Scope Planned!</h3><p>Your collaborative estimation has been logged.</p><p class="text-gradient" style="margin-top:1rem;font-weight:700;">' + priceText + '</p></div>';
   };
 
   showStep(0);
